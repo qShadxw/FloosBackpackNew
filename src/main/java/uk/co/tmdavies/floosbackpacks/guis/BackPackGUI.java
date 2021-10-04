@@ -1,8 +1,6 @@
 package uk.co.tmdavies.floosbackpacks.guis;
-import me.mattstudios.mfgui.gui.components.ItemBuilder;
-import me.mattstudios.mfgui.gui.components.xseries.XMaterial;
-import me.mattstudios.mfgui.gui.guis.PaginatedGui;
-import org.bukkit.Bukkit;
+import dev.triumphteam.gui.builder.item.ItemBuilder;
+import dev.triumphteam.gui.guis.Gui;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,22 +16,24 @@ import java.util.UUID;
 
 public class BackPackGUI {
 
-    PaginatedGui gui;
+    Gui gui;
     final FloosBackpacks plugin = JavaPlugin.getPlugin(FloosBackpacks.class);
 
     public BackPackGUI() {
-        gui = new PaginatedGui(6, "BackPacks");
+        gui = new Gui(6, "BackPacks");
     }
 
     public BackPackGUI setupInventory(Player target) {
 
-        ItemStack filler = XMaterial.BLACK_STAINED_GLASS_PANE.parseItem();
+        ItemStack filler = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
         ItemMeta fMeta = filler.getItemMeta();
 
         fMeta.setDisplayName(" ");
         filler.setItemMeta(fMeta);
 
-        gui.setItem(49, ItemBuilder.from(XMaterial.BARRIER.parseItem()).setName("Close").asGuiItem(event -> {
+        gui.setDefaultClickAction(event -> event.setCancelled(true));
+
+        gui.setItem(49, ItemBuilder.from(Material.BARRIER).setName("Close").asGuiItem(event -> {
             event.setCancelled(true);
             gui.close(event.getWhoClicked());
         }));
@@ -101,7 +101,7 @@ public class BackPackGUI {
             lore.add(Utils.Chat("&1"));
             lore.add(Utils.Chat("&8&oBackpack ID: " + id));
 
-            if (item.getType() == Material.SKULL_ITEM)
+            if (item.getType() == Material.PLAYER_HEAD)
                 item = SkullCreator.itemFromBase64((String) plugin.config.get("Backpack.SkinUrl"));
 
             ItemMeta sMeta = item.getItemMeta();

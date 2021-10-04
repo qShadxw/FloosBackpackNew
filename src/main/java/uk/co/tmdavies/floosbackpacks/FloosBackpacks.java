@@ -82,7 +82,7 @@ public final class FloosBackpacks extends JavaPlugin {
 
             config.set("Version", configVer);
             config.set("Backpack.Name", "&6&lBackpack");
-            config.set("Backpack.Material", "SKULL_ITEM");
+            config.set("Backpack.Material", "PLAYER_HEAD");
             config.set("Backpack.SkinUrl", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODM1MWU1MDU5ODk4MzhlMjcyODdlN2FmYmM3Zjk3ZTc5NmNhYjVmMzU5OGE3NjE2MGMxMzFjOTQwZDBjNSJ9fX0=");
 
             config.saveConfig();
@@ -100,6 +100,7 @@ public final class FloosBackpacks extends JavaPlugin {
             lang.set("Backpack.Give", "%prefix% &e%sender% &7has given you a backpack.");
             lang.set("Backpack.GiveID", "%prefix% &7You have been given the backpack with the ID: &6%id%&7.");
             lang.set("Backpack.Not-Existing", "%prefix% &cThe backpack with the id %id% does not exist. (Case-Sensitive)");
+            lang.set("Backpack.No-OffHand", "%prefix% &cBackpacks are not allowed to be in Off-Hand");
             lang.set("Misc.No-Permission", "%prefix% &cYou do not have the permission: &4%permission%&c.");
             lang.set("Misc.Target-Offline", "%prefix% &cThat player is offline.");
             lang.set("Misc.Invalid-Size", "%prefix% &cThe size you specified is invalid.");

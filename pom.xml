@@ -36,8 +36,8 @@
                 <configuration>
                     <relocations>
                         <relocation>
-                            <pattern>me.mattstudios.mf</pattern>
-                            <shadedPattern>uk.co.tmdavies.floosbackpacks.mf</shadedPattern> <!-- Replace package here here -->
+                            <pattern>dev.triumphteam.gui</pattern>
+                            <shadedPattern>uk.co.tmdavies.floosbackpacks.mf.gui</shadedPattern> <!-- Replace package here here -->
                         </relocation>
                     </relocations>
                 </configuration>
@@ -47,9 +47,6 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -72,13 +69,17 @@
             <url>https://repo.codemc.org/repository/maven-public/</url>
             <layout>default</layout>
         </repository>
+        <repository>
+            <id>repo</id>
+            <url>https://repo.mattstudios.me/artifactory/public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -88,9 +89,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>me.mattstudios.utils</groupId>
-            <artifactId>matt-framework-gui</artifactId>
-            <version>2.0.2</version> <!-- replace version here -->
+            <groupId>dev.triumphteam</groupId>
+            <artifactId>triumph-gui</artifactId>
+            <version>3.0.3</version> <!-- replace version here -->
         </dependency>
     </dependencies>
 </project>

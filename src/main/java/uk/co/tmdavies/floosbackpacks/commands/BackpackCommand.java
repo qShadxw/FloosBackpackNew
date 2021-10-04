@@ -147,7 +147,7 @@ public class BackpackCommand implements CommandExecutor {
                     lore.add(Utils.Chat("&1"));
                     lore.add(Utils.Chat("&8&oBackpack ID: " + id));
 
-                    if (item.getType() == Material.SKULL_ITEM)
+                    if (item.getType() == Material.PLAYER_HEAD)
                         item = SkullCreator.itemFromBase64((String) config.get("Backpack.SkinUrl"));
 
                     ItemMeta iMeta = item.getItemMeta();
@@ -287,7 +287,7 @@ public class BackpackCommand implements CommandExecutor {
                     lore.add(Utils.Chat("&1"));
                     lore.add(Utils.Chat("&8&oBackpack ID: " + id));
 
-                    if (item.getType() == Material.SKULL_ITEM)
+                    if (item.getType() == Material.PLAYER_HEAD)
                         item = SkullCreator.itemFromBase64((String) config.get("Backpack.SkinUrl"));
 
                     ItemMeta iMeta = item.getItemMeta();

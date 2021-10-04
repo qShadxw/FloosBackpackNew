@@ -11,6 +11,7 @@ import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import uk.co.tmdavies.floosbackpacks.FloosBackpacks;
@@ -374,6 +375,8 @@ public class PlayerListener implements Listener {
 
             if (isLoaded) continue;
 
+            if (data.getConfig().getInt(id + ".size") == 0) continue;
+
             Inventory inv = Bukkit.createInventory(null, data.getConfig().getInt(id + ".size"),
                     Utils.Chat(config.getConfig().getString("Backpack.Name")));
 
@@ -436,7 +439,7 @@ public class PlayerListener implements Listener {
         }
 
         // If Player has another person's bp.
-        if (e.getInventory().getTitle().equals(Utils.Chat((String) config.get("Backpack.Name")))) {
+        if (e.getView().getTitle().equals(Utils.Chat((String) config.get("Backpack.Name")))) {
 
             Player p = (Player) e.getPlayer();
             String id;
@@ -475,7 +478,7 @@ public class PlayerListener implements Listener {
         if (!(e.getWhoClicked() instanceof Player)) return;
 
         // Checks Backpack's Name equals Backpack Name.
-        if (!e.getInventory().getTitle().equals(Utils.Chat((String) config.get("Backpack.Name")))) return;
+        if (!e.getView().getTitle().equals(Utils.Chat((String) config.get("Backpack.Name")))) return;
 
         Player p = (Player) e.getWhoClicked();
         ItemStack item = e.getCurrentItem();
@@ -492,6 +495,46 @@ public class PlayerListener implements Listener {
         e.setCancelled(true);
 
         p.updateInventory();
+
+    }
+
+    @EventHandler
+    public void onInventoryOffHandSlotClick(InventoryClickEvent e) {
+
+        if (!(e.getClickedInventory().getType().equals(InventoryType.PLAYER))) return;
+
+        ItemStack item = e.getCursor();
+
+        if (item == null) return;
+
+        if (!item.getType().equals(Material.valueOf((String) config.get("Backpack.Material")))) return;
+
+        if (!item.getItemMeta().getDisplayName().equals(Utils.Chat((String) config.get("Backpack.Name")))) return;
+
+        if (e.getRawSlot() == 45) {
+
+            e.setCancelled(true);
+
+            e.getWhoClicked().sendMessage(Utils.Chat((String) lang.get("Backpack.No-OffHand")).replace("%prefix%", Utils.Chat((String) lang.get("Prefix"))));
+
+        }
+
+    }
+
+    @EventHandler
+    public void onItemSwap(PlayerSwapHandItemsEvent e) {
+
+        ItemStack item = e.getOffHandItem();
+
+        if (item == null) return;
+
+        if (!item.getType().equals(Material.valueOf((String) config.get("Backpack.Material")))) return;
+
+        if (!item.getItemMeta().getDisplayName().equals(Utils.Chat((String) config.get("Backpack.Name")))) return;
+
+        e.setCancelled(true);
+
+        e.getPlayer().sendMessage(Utils.Chat((String) lang.get("Backpack.No-OffHand")).replace("%prefix%", Utils.Chat((String) lang.get("Prefix"))));
 
     }
 

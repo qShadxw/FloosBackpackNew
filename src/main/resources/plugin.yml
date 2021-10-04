@@ -1,7 +1,7 @@
 name: FloosBackpacks
 version: ${project.version}
 main: uk.co.tmdavies.floosbackpacks.FloosBackpacks
-api-version: 1.12
+api-version: 1.16
 authors: [Carbonate]
 depend: [NBTAPI]
 description: Private BackPack Plugin for FloosKingdom
